@@ -4,10 +4,10 @@ author: "Eleanore Brugh"
 date: "2026-03-05"
 output: html_document
 ---
+#Lab3 Exercises
 ```{r}
 install.packages("tidycensus")
 ```
-
 
 
 ```{r packages}
@@ -17,6 +17,7 @@ library(sf)
 library(tidyverse)
 library(tmap)
 ```
+
 
 
 
