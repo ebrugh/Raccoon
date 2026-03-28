@@ -112,14 +112,102 @@ nb[[1]]
 
 
 ```{r counties in index 1}
-
+##Erie County Ohio
 ohio.projected$NAME[1]
 
+##Lorain, Sandusky, and Huron the neighbors
 nb[[1]] %>% ohio.projected$NAME[.]
 
 ```
 
+```{r assigning weights to each neighboring polygon}
 
+#zero.policy=TRUE allows for lists of non-neighbors (use with caution)
+lw <- spdep::nb2listw(nb, style="W", zero.policy=TRUE)
+
+#see the weight of the first polygons four neighbors
+lw$weights[1]
+
+```
+
+```{r}
+#using the attribute to get the count of neighbors in W
+neighbors <- attr(lw$weights,"comp")$d 
+
+#plotting it
+hist(neighbors)
+
+```
+
+```{r}
+#average neighboring F 75-79 values
+F75.lag <- lag.listw(lw, ohio.projected$B01001_047E)
+F75.lag
+
+```
+
+###Morans 
+```{r}
+
+moran.test(ohio.projected$B01001_047E, lw)
+
+```
+
+
+###Moran's Plots
+```{r}
+
+moran.plot(ohio.projected$B01001_047E, lw, zero.policy=TRUE, plot=TRUE)
+
+```
+
+
+
+#MY TASKS
+###Task 1
+
+
+###Task 2
+
+
+###Task 3
+
+
+###Task 4
+
+
+###Task 5
+####Task5.1
+
+
+####Task5.2
+
+
+####Task5.3
+
+
+####Task5.4
+
+
+###Task 6
+####Task6.1
+
+
+####Task6.2
+
+
+####Task6.3
+
+
+####Task6.4
+
+
+
+#QUESTIONs
+###Q1
+###Q2
+###Q3
+###Q4
 
 
 
