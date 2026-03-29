@@ -291,16 +291,33 @@ lw_idw <- nb2listw(nb_idw, glist = idw_weights, style = "W", zero.policy = TRUE)
 
 ```
 
-
 ####Task6.2
+```{r histogram}
 
+neigh_idw <- attr(lw_idw$weights, "comp")$d
+
+hist(
+  neigh_idw,
+  main = "Number of IDW Neighbors",
+  xlab = "Number of Neighbors",
+  col = "forestgreen"
+)
+
+```
 
 ####Task6.3
+```{r average}
 
+mean(neigh_idw)
+#[1] 0.001266765
+```
 
 ####Task6.4
+```{r Moran Plot}
 
+moran.plot(fs_projected$poverty_pct, lw_idw, zero.policy = TRUE)
 
+```
 
 #QUESTIONs
 ###Q1
