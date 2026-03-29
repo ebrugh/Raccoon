@@ -270,39 +270,16 @@ moran.plot(fs_projected$poverty_pct, lw, zero.policy = TRUE)
 
 ```
 
-
-
-```{r four states}
-
-#Ohio, Indian, Kentucky, West Virginia
-states <- c("39", "18", "21", "54")
-
-subs
-
-
-###Task 2
-
-
-###Task 3
-
-
-###Task 4
-
-
-###Task 5
-####Task5.1
-
-
-####Task5.2
-
-
-####Task5.3
-
-
-####Task5.4
-
-
 ###Task 6
+```{r}
+#for x,y coordinates
+coordinates <- st_coordinates(st_centroid(fs_projected))
+
+#distance based neighbors
+nb_idw <- dnearneigh(coordinates, 0, 300000)
+
+```
+
 ####Task6.1
 
 
