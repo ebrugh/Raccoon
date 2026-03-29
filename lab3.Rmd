@@ -165,7 +165,21 @@ moran.plot(ohio.projected$B01001_047E, lw, zero.policy=TRUE, plot=TRUE)
 
 #MY TASKS
 ###Task 1
-```{r Four states}
+```{r poverty data}
+
+options(tigris_use_cache = TRUE)
+
+d.poverty <- get_acs(
+  geography = "county",
+  table = "B17001",
+  output = "wide",
+  geometry = TRUE,
+  year = 2020
+)
+
+```
+
+```{r four states}
 
 #Ohio, Indian, Kentucky, West Virginia
 states <- c("39", "18", "21", "54")
