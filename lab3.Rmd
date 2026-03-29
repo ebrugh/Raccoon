@@ -278,9 +278,18 @@ coordinates <- st_coordinates(st_centroid(fs_projected))
 #distance based neighbors
 nb_idw <- dnearneigh(coordinates, 0, 300000)
 
+#IDW
+dist_list <- nbdists(nb_idw, coordinates) 
+idw_weights <- lapply(dist_list, function(x) 1 / x)
+
 ```
 
 ####Task6.1
+```{r row standardize}
+
+lw_idw <- nb2listw(nb_idw, glist = idw_weights, style = "W", zero.policy = TRUE)
+
+```
 
 
 ####Task6.2
