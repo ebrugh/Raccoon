@@ -223,6 +223,54 @@ tm_shape(four_states) +
 
 ```
 
+###Task 5
+```{r}
+#projecting the data
+fs_projected <- st_transform(four_states, "ESRI:102010")
+
+#queen contiguity
+nb <-poly2nb(fs_projected, queen = TRUE)
+nb
+
+```
+
+####Task5.1
+```{r}
+#standardize 
+lw <- nb2listw(nb, style = "W", zero.policy = TRUE)
+lw
+```
+
+####Task5.2
+```{r histogram}
+
+neighbors <- attr(lw$weights, "comp")$d
+
+hist(
+  neighbors,
+  main = "Number of Neighbors Histogram",
+  xlab = "Number of Neighbors",
+  col = "lightgreen"
+)
+
+```
+
+####Task5.3
+```{r average}
+
+mean(neighbors)
+#[1] 5.571831
+
+```
+
+####Task5.4
+```{r Moran Plot}
+
+moran.plot(fs_projected$poverty_pct, lw, zero.policy = TRUE)
+
+```
+
+
 
 ```{r four states}
 
