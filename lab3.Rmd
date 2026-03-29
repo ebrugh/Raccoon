@@ -13,6 +13,7 @@ library(tidycensus)
 library(sf)
 library(tidyverse)
 library(tmap)
+library(stringr)
 
 ```
 
@@ -177,14 +178,36 @@ d.poverty <- get_acs(
   year = 2020
 )
 
+glimpse(d.poverty)
+
 ```
+
+```{r subset}
+
+#Ohio, Indian, Kentucky, West Virginia
+four_states <- d.poverty %>%
+  mutate(STATEID = stringr::str_sub(GEOID, 1, 2)) %>%
+  filter(STATEID %in% c("39", "18", "21", "54"))
+
+glimpse(four_states)
+```
+
+###Task 2
+```{r}
+
+
+
+```
+
+
+
 
 ```{r four states}
 
 #Ohio, Indian, Kentucky, West Virginia
 states <- c("39", "18", "21", "54")
 
-```
+subs
 
 
 ###Task 2
@@ -225,13 +248,4 @@ states <- c("39", "18", "21", "54")
 
 #QUESTIONs
 ###Q1
-###Q2
-###Q3
-###Q4
-
-
-
-
-
-
 
