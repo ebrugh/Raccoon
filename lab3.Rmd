@@ -4,8 +4,8 @@ author: "Eleanore Brugh"
 date: "2026-03-05"
 output: html_document
 ---
-#Lab3 Exercises
 
+#Lab3 Exercises
 ```{r packages}
 
 library(spdep)
@@ -321,4 +321,16 @@ moran.plot(fs_projected$poverty_pct, lw_idw, zero.policy = TRUE)
 
 #QUESTIONs
 ###Q1
+####### Morans I is calculated by creating a weight matrix (contiguity or IDW) that is the spatial aspect. The variables are averaged and the the deviations are found to figure out how far from average they are. 
+
+###Q2
+###### A spatially-lagged variable is the summary of a variable from neighboring locations. The values are confined to a single varible using the spatial weights matrix. It provides insight to spatial dependence and whether or not it has an influence on other locations. 
+
+###Q3
+###### Contiguity defines neighbors based off of the borders touching while the IDW defines neighbors by distance. Defining W changes the way that spatial patterns are detected. The contiguity Moran plot is closer to the fit line and the outliers are more obvious. The IDW Moran plot is more spread is more spread out and has less outliers. This represents the contiguity method and the more localized patterns vs the IDW wich gives a more accurate picture because of the weight is closer to the counties. 
+
+###Q4
+###### A H-L quadrant is a high-low quandrant. High values surrounded by neighboring locations with low values. It's useful because it can identify spatial clustering and provide understanding for patterns for locations and when more data or a different W might be needed to fully complete data analysis. 
+
+
 
