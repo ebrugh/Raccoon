@@ -193,13 +193,35 @@ glimpse(four_states)
 ```
 
 ###Task 2
-```{r}
-
-
+```{r normalize}
+#the poverty counts and total population to determine the percent of people below the poverty line for each county
+four_states <- four_states %>%
+  mutate(poverty_pct = (B17001_002E / B17001_001E) * 100)
 
 ```
 
+###Task 3
+```{r histogram}
 
+hist(
+  four_states$poverty_pct,
+  main = "County Poverty Rate For OH,IN,KT,WV",
+  xlab = "Percent Below Poverty",
+  col = "darkgreen" 
+)
+
+```
+
+###Task 4
+```{r }
+
+tm_shape(four_states) +
+  tm_polygons("poverty_pct", 
+              style = "quantile",
+              palette = "greens") +
+  tm_layout(frame = FALSE)
+
+```
 
 
 ```{r four states}
