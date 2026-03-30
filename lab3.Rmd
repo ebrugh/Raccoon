@@ -319,9 +319,54 @@ moran.plot(fs_projected$poverty_pct, lw_idw, zero.policy = TRUE)
 
 ```
 
+#Bonus?
+```{r}
+#to get the data
+#put it into a dataframe
+#quadrants
+#plot
+
+#data behind the plot
+fs_moran <- moran.plot(
+  fs_projected$poverty_pct,
+  lw,
+  zero.policy = TRUE,
+  plot = FALSE
+)
+
+#dataframe
+df <- data.frame(
+  x = fs_moran$x,
+  lag = fs_moran$wx
+)
+#outliers separate because I couldn't get it to work with the above code
+if("is.inf" %in% names(fs_moran)){
+  df$significant <- fs_moran$is_inf
+}
+
+#vertical line
+mean_x <- mean(df$x)
+
+#horizontal line
+mean_lag <- mean(df$lag)
+
+#quadrants
+df <- df %>%
+  mutate(
+    quadrant = case_when(
+      x >= mean_x & lag >= mean_lag ~ "HH", #high value clusters
+      x >= mean_x & lag < mean_lag ~ "HL", #outliers
+      x < mean_x & lag < mean_lag ~ "LL", #low value clusters
+      x < mean_x & lag >= mean_lag ~ "LH") #outliers
+  )
+
+#could not figure out the plot
+
+```
+
 #QUESTIONs
 ###Q1
-####### Morans I is calculated by creating a weight matrix (contiguity or IDW) that is the spatial aspect. The variables are averaged and the the deviations are found to figure out how far from average they are. 
+####### Morans I is calculated by creating a weight matrix (contiguity or IDW) that is the spatial aspect. The variables are averaged and the the deviations are found to figure out how far from average they are. It compares values and calculates if those values are near each other to measure the spatial autocorrelation.
 
 ###Q2
 ###### A spatially-lagged variable is the summary of a variable from neighboring locations. The values are confined to a single varible using the spatial weights matrix. It provides insight to spatial dependence and whether or not it has an influence on other locations. 
